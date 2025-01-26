@@ -1,11 +1,48 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import collegeTeams from '../assets/content/colleges.json';
+
+let arr = [];
+const numbers = new Set();
+
+while (numbers.size < 10) {
+	numbers.add(Math.floor(Math.random() * 133) + 1);
+};
+
+arr.push(...numbers);
 ---
 
 <Layout>
-	<Welcome />
+	<div class="container">
+	{arr.map((num: any) => {
+		const team = collegeTeams[num];
+		return (
+		  <Card
+			school={team.school}
+			mascot={team.mascot}
+			city={team.location.city}
+			state={team.location.state}
+			color={team.color}
+			logo={team.logos[1]}
+			stadium={team.location.name}
+			conference={team.conference}
+			classification={team.classification}
+		  />
+		)
+	  })};
+	</div>
 </Layout>
+
+<style lang="scss">
+	.container {
+		max-width: 1400px;
+		margin: 0 auto;
+		height: 80vh;
+		padding: 20px;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+</style>
