@@ -53,6 +53,8 @@ const { school, mascot, city, state, stadium, conference, classification, logo, 
 </div>
 
 <style lang="scss">
+    @use './global.scss';
+
     .college-card {
         padding: 20px;
         display: grid;
@@ -139,27 +141,15 @@ const { school, mascot, city, state, stadium, conference, classification, logo, 
         }
 
         h1 {
-            margin: 0 0 10px;
-            font-family: "Encode Sans Expanded", serif;
             color: #FFF;
-            font-weight: 300;
-            font-size: 3.25rem;
         }
 
         h2 {
-            font-family: "Encode Sans Expanded", serif;
             color: #FFF;
-            font-weight: 300;
-            font-size: 1rem;
-            margin: 0 0 5px;
         }
 
         p {
-            margin: 0;
-            font-family: "Encode Sans Condensed", serif;
             color: #FFF;
-            font-weight: 200;
-            font-size: 1.55rem;
         }
     }
 </style>
