@@ -1,11 +1,115 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+
+import collegeTeams from '../../assets/content/colleges.json';
+const college = collegeTeams[88];
+
 ---
 
 <Layout>
-	<h1>Quiz</h1>
+    <div class="quiz-window">
+        <div class="quiz-question">
+            <div class="quiz-color quiz-color--primary" style=`background: ${ college.color }`>
+                <h2>Primary Color</h2>
+            </div>
+        </div>
+
+        <div class="quiz-question">
+            <div class="quiz-color quiz-color--secondary" style=`background: ${ college.alternateColor }`>
+                <h2>Secondary Color</h2>
+            </div>
+        </div>
+
+        <div class="quiz-question--2">
+            <p><span>Stadium</span> { college.location.name }</p>
+            <p><span>Location</span> { college.location.city }, { college.location.state }</p>
+            <p><span>Conference</span> { college.conference }</p>
+        </div>
+
+        <div class="quiz-question--logo">
+            <div class="quiz-logo" style=`background-image: url('${ college.logos[0] }');`></div>
+        </div>
+    </div>
 </Layout>
 
 <style lang="scss">
     @use '../../components/global.scss';
+
+    .quiz-window {
+        padding: 25px;
+        max-width: 800px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+
+        @media (min-width: 600px) {
+            padding: 45px;
+            gap: 1rem;
+        }
+
+        .quiz-question {
+            grid-column: auto / span 2;
+            padding: 15px 0;
+
+            @media (min-width: 600px) {
+                grid-column: auto / span 1;
+            }
+
+            .quiz-color {
+                height: 100%;
+                width: 100%;
+                min-height: 200px;
+                overflow: hidden;
+                position: relative;
+
+                h2 {
+                    position: absolute;
+                    inset: 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: #000;
+                    mix-blend-mode: soft-light;
+                    text-transform: uppercase;
+                    letter-spacing: 0.15rem;
+                    font-size: 1.5rem;
+                }
+            }
+        }
+
+        .quiz-question--2 {
+            grid-column: auto / span 2;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+
+            p {
+                grid-column: auto / span 1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+                span {
+                    text-transform: uppercase;
+                    letter-spacing: 0.15rem;
+                    font-size: 1rem;
+                }
+            }
+        }
+
+        .quiz-question--logo {
+            grid-column: auto / span 2;
+
+            .quiz-logo {
+                width: 100%;
+                aspect-ratio: 2.5;
+                background-size: contain;
+                background-position: center center;
+                background-repeat: no-repeat;
+                filter: brightness(0);
+            }
+        }
+    }
 </style>
