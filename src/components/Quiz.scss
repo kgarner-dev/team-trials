@@ -1,30 +1,4 @@
----
-import Layout from '../../layouts/Layout.astro';
-import Quiz from '../../components/Quiz';
-
-import collegeTeams from '../../assets/content/colleges.json';
-const randomCollege = Math.floor(Math.random() * 133) + 1;
-const college = collegeTeams[randomCollege];
-const collegeNumber = 50;
-
-const sec = []
-
-for (let i = 0; i < collegeTeams.length; i++) {
-    let obj = collegeTeams[i];
-
-    if (obj.conference === "SEC") {
-        sec.push(obj)
-    }
-}
-
----
-
-<Layout>
-    <Quiz conference={ "SEC" } client:load />
-</Layout>
-
-<style lang="scss">
-    @use '../../components/global.scss';
+@use './global.scss';
 
     .quiz-window {
         padding: 25px;
@@ -38,6 +12,12 @@ for (let i = 0; i < collegeTeams.length; i++) {
         @media (min-width: 600px) {
             padding: 45px;
             gap: 1rem;
+        }
+
+        #q1, #q2, #q3 {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.35s ease;
         }
 
         .quiz-question {
@@ -94,6 +74,7 @@ for (let i = 0; i < collegeTeams.length; i++) {
 
         .quiz-question--logo {
             grid-column: auto / span 2;
+            filter: brightness(0);
 
             .quiz-logo {
                 width: 100%;
@@ -101,7 +82,6 @@ for (let i = 0; i < collegeTeams.length; i++) {
                 background-size: contain;
                 background-position: center center;
                 background-repeat: no-repeat;
-                filter: brightness(0);
             }
         }
 
@@ -157,4 +137,3 @@ for (let i = 0; i < collegeTeams.length; i++) {
             cursor: pointer;
         }
     }
-</style>
