@@ -2,8 +2,8 @@
 import Layout from '../../layouts/Layout.astro';
 
 import collegeTeams from '../../assets/content/colleges.json';
-const college = collegeTeams[88];
-
+const randomCollege = Math.floor(Math.random() * 133) + 1;
+const college = collegeTeams[randomCollege];
 ---
 
 <Layout>
@@ -71,7 +71,8 @@ const college = collegeTeams[88];
                     align-items: center;
                     justify-content: center;
                     color: #000;
-                    mix-blend-mode: soft-light;
+                    text-shadow: -1px -1px 0 #FFF, 1px -1px 0 #FFF, -1px 1px 0 #FFF, 1px 1px 0 #FFF;
+                    font-weight: 500;
                     text-transform: uppercase;
                     letter-spacing: 0.15rem;
                     font-size: 1.5rem;
