@@ -1,0 +1,39 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Quiz from '../../components/Quiz';
+
+export async function getStaticPaths() {
+    return [
+        { params: { quizType: "sec" } },
+        { params: { quizType: "aac" } },
+        { params: { quizType: "acc" } },
+        { params: { quizType: "big10" } },
+        { params: { quizType: "big12" } },
+        { params: { quizType: "cusa" } },
+        { params: { quizType: "mw" } },
+        { params: { quizType: "pac12" } },
+        { params: { quizType: "sunbelt" } },
+        { params: { quizType: "independents" } }
+    ];
+}
+
+const quizMap: Record<string, string> = {
+    "sec": "SEC",
+    "aac": "American Athletic",
+    "acc": "ACC",
+    "big10": "Big Ten",
+    "big12": "Big 12",
+    "cusa": "Conference USA",
+    "mw": "Mountain West",
+    "pac12": "Pac-12",
+    "sunbelt": "Sun Belt",
+    "independents": "FBS Independents"
+};
+
+const { quizType } = Astro.params;
+
+const mappedQuiz = quizMap[quizType] || quizType;
+---
+<Layout>
+    <Quiz conference={ mappedQuiz } client:load />
+</Layout>
