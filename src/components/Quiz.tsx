@@ -183,6 +183,7 @@ function Quiz(props: any) {
 
         {resultVisible && (
             <div className="result-window" id="result-window">
+                <a href='/'>← Back Home</a>
                 <div className="results">
                     <p>Total Points: { totalPoints }</p>
                 </div>
@@ -200,7 +201,7 @@ function Quiz(props: any) {
                             stadium={college.location.name} 
                             conference={college.conference} 
                             classification={college.classification} 
-                            logo={college.logos[0]} 
+                            logo={college.logos[1]} 
                             color={college.color} 
                             grayscale={grayscalePercentage}
                         />

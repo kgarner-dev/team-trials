@@ -1,41 +1,52 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+import CategoryCard from '../components/CategoryCard.astro';
 
-import collegeTeams from '../assets/content/colleges.json';
+// let arr = [];
+// const numbers = new Set();
 
-let arr = [];
-const numbers = new Set();
+// while (numbers.size < 10) {
+// 	numbers.add(Math.floor(Math.random() * 133) + 1);
+// };
 
-while (numbers.size < 10) {
-	numbers.add(Math.floor(Math.random() * 133) + 1);
-};
-
-arr.push(...numbers);
+// arr.push(...numbers);
 ---
 
 <Layout>
 	<div class="container">
-	{arr.map((num: any) => {
-		const team = collegeTeams[num];
-		return (
-		  <Card
-			school={team.school}
-			mascot={team.mascot}
-			city={team.location.city}
-			state={team.location.state}
-			color={team.color}
-			logo={team.logos[1]}
-			stadium={team.location.name}
-			conference={team.conference}
-			classification={team.classification}
-		  />
-		)
-	  })};
+		<div class="category">
+			<h2>College</h2>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam scelerisque euismod lacus, eu vehicula purus blandit vitae. Phasellus lobortis tempor euismod. Aliquam dictum vulputate massa, sed suscipit ex dictum sit amet.</p>
+			<CategoryCard 
+				title="SEC" 
+				description="Test!" 
+				url="/college/sec"
+			/>
+
+			<CategoryCard 
+				title="Big Ten" 
+				description="Test!" 
+				url="/college/big10"
+			/>
+
+			<CategoryCard 
+				title="Independents" 
+				description="Test!" 
+				url="/college/independents"
+			/>
+
+			<CategoryCard 
+				title="Pac 12" 
+				description="Test!" 
+				url="/college/pac12"
+			/>
+		</div>
 	</div>
 </Layout>
 
 <style lang="scss">
+	@use "../components/global.scss";
+
 	.container {
 		max-width: 1400px;
 		margin: 0 auto;
@@ -45,4 +56,35 @@ arr.push(...numbers);
 		flex-direction: column;
 		gap: 1rem;
 	}
+
+	.category {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		grid-template-rows: auto;
+		gap: 10px;
+
+		h2 {
+			grid-column: auto / span 4;
+			font-size: clamp(1.25rem, 2.55vw, 2.55rem);
+			margin: 0;
+		}
+
+		p {
+			grid-column: auto / span 4;
+			margin: 10px 0;
+		}
+
+		.category-card {
+			grid-column: auto / span 4;
+
+			@media (min-width: 500px) {
+				grid-column: auto / span 2;
+			}
+
+			@media (min-width: 750px) {
+				grid-column: auto / span 1;
+			}
+		}
+	}
+
 </style>
