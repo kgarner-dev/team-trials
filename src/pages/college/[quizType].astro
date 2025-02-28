@@ -13,6 +13,7 @@ export async function getStaticPaths() {
         { params: { quizType: "mw" } },
         { params: { quizType: "pac12" } },
         { params: { quizType: "sunbelt" } },
+        { params: { quizType: "mac" } },
         { params: { quizType: "independents" } }
     ];
 }
@@ -27,6 +28,7 @@ const quizMap: Record<string, string> = {
     "mw": "Mountain West",
     "pac12": "Pac-12",
     "sunbelt": "Sun Belt",
+    "mac": "Mid-American",
     "independents": "FBS Independents"
 };
 

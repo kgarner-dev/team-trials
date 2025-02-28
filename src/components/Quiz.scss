@@ -55,14 +55,19 @@
             grid-column: auto / span 2;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
 
             p {
-                grid-column: auto / span 1;
+                grid-column: auto / span 3;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
                 text-align: center;
+
+                @media (min-width: 650px) {
+                    grid-column: auto / span 1;
+                }
 
                 span {
                     text-transform: uppercase;

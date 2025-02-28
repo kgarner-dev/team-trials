@@ -17,28 +17,82 @@ import CategoryCard from '../components/CategoryCard.astro';
 		<div class="category">
 			<h2>College</h2>
 			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam scelerisque euismod lacus, eu vehicula purus blandit vitae. Phasellus lobortis tempor euismod. Aliquam dictum vulputate massa, sed suscipit ex dictum sit amet.</p>
+
 			<CategoryCard 
 				title="SEC" 
-				description="Test!" 
 				url="/college/sec"
+				logo="https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa_conf/500/8.png"
+				color="#002977"
 			/>
 
 			<CategoryCard 
 				title="Big Ten" 
-				description="Test!" 
 				url="/college/big10"
+				logo="https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa_conf/500/5.png"
+				color="#1D88CA"
+			/>
+
+			<CategoryCard 
+				title="Big 12" 
+				url="/college/big12"
+				logo="https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa_conf/500/4.png"
+				color="#C41230"
+			/>
+
+			<CategoryCard 
+				title="ACC" 
+				url="/college/acc"
+				logo="https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa_conf/500/1.png"
+				color="#023CA6"
+			/>
+
+			<CategoryCard 
+				title="Sun Belt" 
+				url="/college/sunbelt"
+				logo="https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa_conf/500/37.png"
+				color="#F5A706"
+			/>
+
+			<CategoryCard 
+				title="Mid-American" 
+				url="/college/mac"
+				logo="https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa_conf/500/15.png"
+				color="#002A5C"
+			/>
+
+			<CategoryCard 
+				title="Mountain West" 
+				url="/college/mw"
+				logo="https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa_conf/500/17.png"
+				color="#472783"
+			/>
+
+			<CategoryCard 
+				title="AAC" 
+				url="/college/aac"
+				logo="https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa_conf/500/151.png"
+				color="#091F40"
+			/>
+
+			<CategoryCard 
+				title="Conference USA" 
+				url="/college/cusa"
+				logo="https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa_conf/500/12.png"
+				color="#E91B46"
 			/>
 
 			<CategoryCard 
 				title="Independents" 
-				description="Test!" 
 				url="/college/independents"
+				logo="https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa_conf/500/18.png"
+				color="#808080"
 			/>
 
 			<CategoryCard 
 				title="Pac 12" 
-				description="Test!" 
 				url="/college/pac12"
+				logo="https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa_conf/500/9.png"
+				color="#00264B"
 			/>
 		</div>
 	</div>
@@ -72,18 +126,6 @@ import CategoryCard from '../components/CategoryCard.astro';
 		p {
 			grid-column: auto / span 4;
 			margin: 10px 0;
-		}
-
-		.category-card {
-			grid-column: auto / span 4;
-
-			@media (min-width: 500px) {
-				grid-column: auto / span 2;
-			}
-
-			@media (min-width: 750px) {
-				grid-column: auto / span 1;
-			}
 		}
 	}
 
