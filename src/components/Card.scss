@@ -21,8 +21,12 @@
         gap: 1.15rem;
     }
 
-    .college-logo, .college-content {
+    .college-logo, .college-content, .college-attempts {
         grid-column: auto / span 3;
+    }
+
+    .college-attempts {
+        text-align: right;
     }
 
     .college-logo {
@@ -33,6 +37,7 @@
         img {
             max-width: 100%;
             aspect-ratio: 1;
+            filter: drop-shadow(5px 5px 5px rgba(255, 255, 255, 0.25));
             -webkit-filter: drop-shadow(5px 5px 5px rgba(255, 255, 255, 0.25));
         }
     }

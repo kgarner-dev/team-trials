@@ -36,6 +36,6 @@ const { quizType } = Astro.params;
 
 const mappedQuiz = quizMap[quizType] || quizType;
 ---
-<Layout>
+<Layout title={quizMap[quizType]}>
     <Quiz conference={ mappedQuiz } client:load />
 </Layout>

@@ -11,7 +11,7 @@ interface CardProps {
     classification: string;
     logo: string;
     color: string;
-    grayscale: number;
+    attempts: number;
 }
 
 const Card: React.FC<CardProps> = ({ 
@@ -24,13 +24,16 @@ const Card: React.FC<CardProps> = ({
     classification, 
     logo, 
     color,
-    grayscale
+    attempts
 }) => {
     return (
         <div className="college-card" style={{ 
-            background: color,
-            filter: `grayscale(${grayscale}%)`
+            background: color
         }}>
+            <div className="college-attempts">
+                <p>Attempts: { attempts + 1 }</p>
+            </div>
+
             <div className="college-logo">
                 <img src={logo} alt={`${school} Logo`} />
             </div>

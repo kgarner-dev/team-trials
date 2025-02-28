@@ -12,6 +12,7 @@ function Quiz(props: any) {
     const [totalPoints, setTotalPoints] = useState(0);
     const [quizVisible, setQuizVisible] = useState(true);
     const [resultVisible, setResultVisible] = useState(false);
+    const [answerVisible, setAnswerVisible] = useState(false);
     const [quizResultsArray, setQuizResultsArray] = useState<number[]>([]);
 
     const shuffleArray = (array: any[]) => {
@@ -21,6 +22,27 @@ function Quiz(props: any) {
             [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
         }
         return shuffled;
+    };
+
+    function resetVisuals() {
+        for (let i = 1; i <= 5; i++) {
+            const strike = document.getElementById(`s${i}`);
+            if (strike) {
+                strike.style.opacity = "0.25";
+                strike.style.color = "black";
+            }
+        }
+
+        for (let i = 1; i <= 3; i++) {
+            const question = document.getElementById(`q${i}`);
+            if (question) {
+                question.style.display = "none";
+                question.style.opacity = "0";
+            }
+        }
+
+        const logo = document.getElementById(`q3`);
+        logo!.style.filter = "brightness(0)";     
     };
 
     useEffect(() => {
@@ -69,63 +91,15 @@ function Quiz(props: any) {
         ) || currentCollege.school.toLowerCase() === formattedAnswer;
 
         if (isCorrectAnswer) {
-            setQuizResultsArray(prevResults => [...prevResults, attemptCount]);
-            setAttemptCount(0);
-            setTotalPoints(totalPoints => totalPoints + points)
-            setPoints(100)
+            setAnswerVisible(true)
 
-            for (let i = 1; i <= 5; i++) {
-                const strike = document.getElementById(`s${i}`);
-                if (strike) {
-                    strike.style.opacity = "0.25";
-                    strike.style.color = "black";
-                }
-            }
-
-            for (let i = 1; i <= 3; i++) {
-                const question = document.getElementById(`q${i}`);
-                if (question) {
-                    question.style.display = "none";
-                    question.style.opacity = "0";
-                }
-            }
-
-            const logo = document.getElementById(`q3`);
-            logo!.style.filter = "brightness(0)";            
-            
-            if (questionIndex < collegeList.length - 1) {
-                setQuestionIndex(prevIndex => prevIndex + 1);
-            } else {
-                setQuizVisible(false);
-                setResultVisible(true);
-            }
-        } else {
-            setAttemptCount(prevCount => prevCount + 1);
-            
-            if (attemptCount == 4) {
+            setTimeout(() => {
+                setAnswerVisible(false)
                 setQuizResultsArray(prevResults => [...prevResults, attemptCount]);
-                setAttemptCount(0);  
-                setTotalPoints(totalPoints => totalPoints + 0)
-                setPoints(100)
-
-                for (let i = 1; i <= 5; i++) {
-                    const strike = document.getElementById(`s${i}`);
-                    if (strike) {
-                        strike.style.opacity = "0.25";
-                        strike.style.color = "black";
-                    }
-                }
-    
-                for (let i = 1; i <= 3; i++) {
-                    const question = document.getElementById(`q${i}`);
-                    if (question) {
-                        question.style.display = "none";
-                        question.style.opacity = "0";
-                    }
-                }
-    
-                const logo = document.getElementById(`q3`);
-                logo!.style.filter = "brightness(0)";   
+                setAttemptCount(0);
+                setTotalPoints(totalPoints => totalPoints + points);
+                setPoints(100);
+                resetVisuals();
 
                 if (questionIndex < collegeList.length - 1) {
                     setQuestionIndex(prevIndex => prevIndex + 1);
@@ -133,6 +107,28 @@ function Quiz(props: any) {
                     setQuizVisible(false);
                     setResultVisible(true);
                 }
+            }, 3000);        
+        } else {
+            setAttemptCount(prevCount => prevCount + 1);
+            
+            if (attemptCount == 4) {
+                setAnswerVisible(true);
+
+                setTimeout(() => {
+                    setAnswerVisible(false)
+                    setQuizResultsArray(prevResults => [...prevResults, attemptCount]);
+                    setAttemptCount(0);  
+                    setTotalPoints(totalPoints => totalPoints + 0)
+                    setPoints(100)
+                    resetVisuals(); 
+    
+                    if (questionIndex < collegeList.length - 1) {
+                        setQuestionIndex(prevIndex => prevIndex + 1);
+                    } else {
+                        setQuizVisible(false);
+                        setResultVisible(true);
+                    }
+                }, 3000);   
             }
         }
 
@@ -140,6 +136,7 @@ function Quiz(props: any) {
     };
 
     return (
+        <div className="quiz-wrapper">
         <div className="quiz-window" id="quiz-window">
         {quizVisible && (
             <>
@@ -189,7 +186,6 @@ function Quiz(props: any) {
                 </div>
                 {collegeList.map((college, index) => {
                     const missedQuestions = quizResultsArray[index] || 0;
-                    const grayscalePercentage = Math.min(Math.max(missedQuestions * 20, 0), 100);
 
                     return (
                         <Card 
@@ -203,14 +199,14 @@ function Quiz(props: any) {
                             classification={college.classification} 
                             logo={college.logos[1]} 
                             color={college.color} 
-                            grayscale={grayscalePercentage}
+                            attempts={missedQuestions}
                         />
                     );
                 })}
             </div>
         )}
 
-        {quizVisible && (
+        {quizVisible && answerVisible == false && (
              <form className="answer-window" id="answer-window" onSubmit={handleSubmit}>
                 <input 
                     type="text" 
@@ -220,10 +216,31 @@ function Quiz(props: any) {
                     autoComplete="off"
                     value={userAnswer}
                     onChange={(e) => setUserAnswer(e.target.value)}
+                    autoFocus
                 />
              <button type="submit">→</button>
             </form>
             )}
+        </div>
+
+        {answerVisible && (
+            <div className="quiz-answer">
+                <p>+ { points }</p>
+                <Card
+                    key={collegeList[questionIndex]} 
+                    school={ collegeList[questionIndex]?.school } 
+                    mascot={ collegeList[questionIndex]?.mascot } 
+                    city={collegeList[questionIndex]?.location.city} 
+                    state={collegeList[questionIndex]?.location.state} 
+                    stadium={collegeList[questionIndex]?.location.name} 
+                    conference={collegeList[questionIndex]?.conference} 
+                    classification={collegeList[questionIndex]?.classification} 
+                    logo={collegeList[questionIndex]?.logos[0]} 
+                    color={collegeList[questionIndex]?.color}
+                    attempts={attemptCount}
+                />
+            </div>
+        )}
         </div>
     );
 }

@@ -1,3 +1,6 @@
+$primary: #000435;
+$secondary: #02ccfe;
+
 h1 {
     margin: 0 0 10px;
     font-family: "Encode Sans Expanded", serif;
@@ -23,4 +26,10 @@ a {
     font-family: "Encode Sans Condensed", serif;
     font-weight: 400;
     font-size: 1rem;
+    color: $primary;
+    transition: all 0.3s ease;
+
+    &:hover {
+        color: $secondary;
+    }
 }

@@ -12,11 +12,12 @@ import CategoryCard from '../components/CategoryCard.astro';
 // arr.push(...numbers);
 ---
 
-<Layout>
+<Layout title="Sports Smarts">
 	<div class="container">
 		<div class="category">
 			<h2>College</h2>
 			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam scelerisque euismod lacus, eu vehicula purus blandit vitae. Phasellus lobortis tempor euismod. Aliquam dictum vulputate massa, sed suscipit ex dictum sit amet.</p>
+			<a href="/college" class="link">View All →</a>
 
 			<CategoryCard 
 				title="SEC" 
@@ -104,7 +105,7 @@ import CategoryCard from '../components/CategoryCard.astro';
 	.container {
 		max-width: 1400px;
 		margin: 0 auto;
-		height: 80vh;
+		min-height: 80vh;
 		padding: 20px;
 		display: flex;
 		flex-direction: column;
@@ -123,9 +124,16 @@ import CategoryCard from '../components/CategoryCard.astro';
 			margin: 0;
 		}
 
-		p {
+		p, .link {
 			grid-column: auto / span 4;
-			margin: 10px 0;
+		}
+
+		p {
+			margin: 5px 0;
+		}
+
+		.link {
+			margin: 0 0 20px;
 		}
 	}
 
