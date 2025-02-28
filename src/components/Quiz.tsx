@@ -235,7 +235,7 @@ function Quiz(props: any) {
                     stadium={collegeList[questionIndex]?.location.name} 
                     conference={collegeList[questionIndex]?.conference} 
                     classification={collegeList[questionIndex]?.classification} 
-                    logo={collegeList[questionIndex]?.logos[0]} 
+                    logo={collegeList[questionIndex]?.logos[1]} 
                     color={collegeList[questionIndex]?.color}
                     attempts={attemptCount}
                 />

@@ -40,7 +40,7 @@ const Card: React.FC<CardProps> = ({
 
             <div className="college-content">
                 <div className="college-headline">
-                    <h1>{school}</h1>
+                    <h2>{school}</h2>
                     <p>{mascot}</p>
                 </div>
                 <div className="college-info">

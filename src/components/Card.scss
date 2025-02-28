@@ -7,7 +7,6 @@
     grid-template-rows: auto;
     gap: 10px;
     max-width: 800px;
-    margin: 0 auto;
     overflow: hidden;
     position: relative;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
@@ -30,9 +29,13 @@
     }
 
     .college-logo {
-        display: flex;
         align-items: center;
         justify-content: center;
+        display: none;
+
+        @media (min-width: 650px) {
+            display: flex;
+        }
 
         img {
             max-width: 100%;
@@ -45,6 +48,10 @@
     .college-content {
         .college-headline {
             margin-bottom: 20px;
+
+            h2 {
+                font-size: clamp(2rem, 3.25vw, 3.5vw);
+            }
         }
 
         .college-info {
@@ -83,12 +90,16 @@
 
     .college-decoration {
         position: absolute;
-        right: -10%;
-        top: -10%;
-        bottom: -10%;
-        left: 50%;
         z-index: 1;
         opacity: 10%;
+        inset: 0;
+
+        @media (min-width: 650px) {
+            right: -10%;
+            top: -10%;
+            bottom: -10%;
+            left: 50%;
+        }
     }
 
     h1 {
