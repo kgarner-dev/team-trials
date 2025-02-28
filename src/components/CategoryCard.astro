@@ -14,7 +14,7 @@ const { title, url, description, logo, color } = Astro.props
 
     .category-card {
         padding: 20px;
-        aspect-ratio: 1.25;
+        aspect-ratio: 1.85;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -25,6 +25,7 @@ const { title, url, description, logo, color } = Astro.props
 
         @media (min-width: 650px) {
             grid-column: auto / span 2;
+            aspect-ratio: 1.25;
         }
 
         @media (min-width: 850px) {

@@ -141,6 +141,7 @@ body {
     input {
         border: none;
         grid-column: auto / span 4;
+        font-size: clamp(16px, 1vw, 1rem);
     }
 
     button {
@@ -152,6 +153,7 @@ body {
         border-top-right-radius: 12px;
         border-bottom-right-radius: 12px;
         cursor: pointer;
+        font-size: clamp(16px, 1vw, 1rem);
     }
 }
 
