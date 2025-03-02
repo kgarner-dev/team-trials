@@ -1,11 +1,143 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import CategoryCard from '../../components/CategoryCard.astro';
+import Hero from '../../components/Hero.astro';
+
+// let arr = [];
+// const numbers = new Set();
+
+// while (numbers.size < 10) {
+// 	numbers.add(Math.floor(Math.random() * 133) + 1);
+// };
+
+// arr.push(...numbers);
 ---
 
-<Layout>
-    <h1>All Colleges</h1>
+<Layout title="College">
+	<div class="container">
+        <Hero 
+            headline="College"
+            body="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus euismod mi elit. In euismod dignissim justo, tincidunt elementum nisl laoreet eu. Nam porta tincidunt neque. Donec egestas justo a turpis rhoncus tincidunt. Ut sagittis eget lacus ut suscipit."
+            breadcrumb="← Back Home"
+            breadcrumb_link="/"
+        />
+		<div class="category">
+			<CategoryCard 
+				title="SEC" 
+				url="/college/sec"
+				logo="https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa_conf/500/8.png"
+				color="#002977"
+			/>
+
+			<CategoryCard 
+				title="Big Ten" 
+				url="/college/big10"
+				logo="https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa_conf/500/5.png"
+				color="#1D88CA"
+			/>
+
+			<CategoryCard 
+				title="Big 12" 
+				url="/college/big12"
+				logo="https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa_conf/500/4.png"
+				color="#C41230"
+			/>
+
+			<CategoryCard 
+				title="ACC" 
+				url="/college/acc"
+				logo="https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa_conf/500/1.png"
+				color="#023CA6"
+			/>
+
+			<CategoryCard 
+				title="Sun Belt" 
+				url="/college/sunbelt"
+				logo="https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa_conf/500/37.png"
+				color="#F5A706"
+			/>
+
+			<CategoryCard 
+				title="Mid-American" 
+				url="/college/mac"
+				logo="https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa_conf/500/15.png"
+				color="#002A5C"
+			/>
+
+			<CategoryCard 
+				title="Mountain West" 
+				url="/college/mw"
+				logo="https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa_conf/500/17.png"
+				color="#472783"
+			/>
+
+			<CategoryCard 
+				title="AAC" 
+				url="/college/aac"
+				logo="https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa_conf/500/151.png"
+				color="#091F40"
+			/>
+
+			<CategoryCard 
+				title="Conference USA" 
+				url="/college/cusa"
+				logo="https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa_conf/500/12.png"
+				color="#E91B46"
+			/>
+
+			<CategoryCard 
+				title="Independents" 
+				url="/college/independents"
+				logo="https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa_conf/500/18.png"
+				color="#808080"
+			/>
+
+			<CategoryCard 
+				title="Pac 12" 
+				url="/college/pac12"
+				logo="https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa_conf/500/9.png"
+				color="#00264B"
+			/>
+		</div>
+	</div>
 </Layout>
 
 <style lang="scss">
-    @use '../../components/global.scss';
+	@use "../../components/global.scss";
+
+	.container {
+		max-width: 1400px;
+		margin: 0 auto;
+		min-height: 80vh;
+		padding: 20px;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	.category {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		grid-template-rows: auto;
+		gap: 10px;
+
+		h2 {
+			grid-column: auto / span 4;
+			font-size: clamp(1.25rem, 2.55vw, 2.55rem);
+			margin: 0;
+		}
+
+		p, .link {
+			grid-column: auto / span 4;
+		}
+
+		p {
+			margin: 5px 0;
+		}
+
+		.link {
+			margin: 0 0 20px;
+		}
+	}
+
 </style>

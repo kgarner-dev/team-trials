@@ -1,0 +1,42 @@
+---
+const { headline, body, breadcrumb, breadcrumb_link } = Astro.props
+---
+
+<main class="hero">
+    <a href=`${ breadcrumb_link }`>{ breadcrumb }</a>
+    <h1>{ headline }</h1>
+    <p>{ body }</p>
+</main>
+
+<style lang="scss">
+    @use "./global.scss";
+
+    .hero {
+        padding: 20px 0;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto;
+        gap: 10px;
+
+        h1, p, a {
+            grid-column: auto / span 2;
+        }
+
+        @media (min-width: 650px) {
+            padding: 40px 0;
+
+            h1, p {
+                grid-column: auto / span 1;
+            }
+
+            h1 {
+                min-height: 200px;
+            }
+
+            p {
+                display: flex;
+                align-items: flex-end;
+            }
+        }
+    }
+</style>
