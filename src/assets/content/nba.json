@@ -1,0 +1,18 @@
+[
+    {
+        "name": "boston",
+        "mascot": "celtics",
+        "alternameNames": [
+            "boston"
+        ],
+        "conference": "eastern",
+        "division": "atlantic",
+        "classification": "nba",
+        "color": "#007A33",
+        "alternateColor": "#BA9653",
+        "logo": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/bos.png",
+        "city": "boston",
+        "state": "ma",
+        "stadium": "TD Garden"
+    }
+]
