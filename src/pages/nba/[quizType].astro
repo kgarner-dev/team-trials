@@ -9,12 +9,13 @@ export async function getStaticPaths() {
     ];
 }
 
-const { quizType } = Astro.params;
+const quizMap: Record<string, string> = {
+    "eastern": "Eastern",
+    "western": "Western",
+};
 
-const firstLetter = quizType.charAt(0);
-const nextLetters = quizType.slice(1);
-const quizTitle = firstLetter + nextLetters
+const { quizType } = Astro.params;
 ---
-<Layout title={ quizTitle }>
-    <Quiz conference={ quizType } classification="nba" client:load />
+<Layout title={quizMap[quizType]}>
+    <Quiz conference={quizType} classification="nba" client:load />
 </Layout>

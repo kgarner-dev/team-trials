@@ -33,9 +33,7 @@ const quizMap: Record<string, string> = {
 };
 
 const { quizType } = Astro.params;
-
-const mappedQuiz = quizMap[quizType] || quizType;
 ---
 <Layout title={quizMap[quizType]}>
-    <Quiz conference={ mappedQuiz } classification="fbs" client:load />
+    <Quiz conference={ quizType } classification="fbs" client:load />
 </Layout>

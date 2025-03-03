@@ -3,7 +3,7 @@ import "./Quiz.scss";
 import Card from "./Card";
 
 /* Import Team JSON */
-import collegeTeams from '../assets/content/colleges.json';
+import collegeTeams from '../assets/content/college.json';
 import nbaTeams from '../assets/content/nba.json';
 
 function Quiz(props: any) {
@@ -55,7 +55,8 @@ function Quiz(props: any) {
     };
 
     useEffect(() => {
-        const filteredTeams = collegeTeams.filter(team => team.conference === props.conference);
+        const teamsType = quizTypeMap[props.classification.toLowerCase()];
+        const filteredTeams = teamsType.filter(team => team.conference.toLowerCase() === props.conference);
         setTeamList(shuffleArray(filteredTeams));
     }, [props.conference]);
 
@@ -91,13 +92,13 @@ function Quiz(props: any) {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
 
-        const currentCollege = teamList[questionIndex];
-        if (!currentCollege) return;
+        const currentTeam = teamList[questionIndex];
+        if (!currentTeam) return;
 
         const formattedAnswer = userAnswer.trim().toLowerCase();
-        const isCorrectAnswer = currentCollege.alternateNames.some(
+        const isCorrectAnswer = currentTeam.alternateNames.some(
             (name: string) => name.toLowerCase() === formattedAnswer
-        ) || currentCollege.school.toLowerCase() === formattedAnswer;
+        ) || currentTeam.name.toLowerCase() === formattedAnswer;
 
         if (isCorrectAnswer) {
             setAnswerVisible(true)
@@ -162,13 +163,27 @@ function Quiz(props: any) {
             </div>
 
             <div className="quiz-question--2" id="q2">
-                <p><span>Stadium</span> { teamList[questionIndex]?.location.name }</p>
-                <p><span>Conference</span> { teamList[questionIndex]?.conference }</p>
-                <p><span>Location</span> { teamList[questionIndex]?.location.city }, { teamList[questionIndex]?.location.state }</p>
+                <p><span>Stadium</span> { teamList[questionIndex]?.stadium }</p>
+
+                {!teamList[questionIndex]?.division && (
+                    <>
+                    <p><span>Conference</span> { teamList[questionIndex]?.conference }</p>
+
+                    <p><span>Location</span> { teamList[questionIndex]?.city }, { teamList[questionIndex]?.state }</p>
+                    </>
+                )}
+
+                {teamList[questionIndex]?.division && (
+                    <>
+                    <p><span>Conference</span> { teamList[questionIndex]?.conference }</p>
+
+                    <p><span>Division</span> { teamList[questionIndex]?.division }</p>
+                    </>
+                )}
             </div>
 
             <div className="quiz-question--logo" id="q3">
-                <div className="quiz-logo" style={{ backgroundImage: `url(${ teamList[questionIndex]?.logos[0] })` }}>
+                <div className="quiz-logo" style={{ backgroundImage: `url(${ teamList[questionIndex]?.logo })` }}>
                 </div>
             </div>
 
@@ -199,14 +214,15 @@ function Quiz(props: any) {
                     return (
                         <Card 
                             key={index} 
-                            school={team.school} 
+                            name={team.name} 
                             mascot={team.mascot} 
-                            city={team.location.city} 
-                            state={team.location.state} 
-                            stadium={team.location.name} 
+                            city={team.city} 
+                            state={team.state} 
+                            stadium={team.name} 
                             conference={team.conference} 
                             classification={team.classification} 
-                            logo={team.logos[1]} 
+                            division={team.division}
+                            logo={team.logo} 
                             color={team.color} 
                             attempts={missedQuestions}
                         />
@@ -236,14 +252,15 @@ function Quiz(props: any) {
             <div className="quiz-answer">
                 <p>+ { points }</p>
                 <Card
-                    school={ teamList[questionIndex]?.school } 
+                    name={ teamList[questionIndex]?.name } 
                     mascot={ teamList[questionIndex]?.mascot } 
-                    city={teamList[questionIndex]?.location.city} 
-                    state={teamList[questionIndex]?.location.state} 
-                    stadium={teamList[questionIndex]?.location.name} 
+                    city={teamList[questionIndex]?.city} 
+                    state={teamList[questionIndex]?.state} 
+                    stadium={teamList[questionIndex]?.name} 
                     conference={teamList[questionIndex]?.conference} 
+                    division={teamList[questionIndex]?.divison}
                     classification={teamList[questionIndex]?.classification} 
-                    logo={teamList[questionIndex]?.logos[1]} 
+                    logo={teamList[questionIndex]?.logo} 
                     color={teamList[questionIndex]?.color}
                     attempts={attemptCount}
                 />

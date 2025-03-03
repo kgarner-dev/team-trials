@@ -2,7 +2,7 @@
     {
         "name": "Texas",
         "mascot": "Longhorns",
-        "alternameNames": [
+        "alternateNames": [
             "ut",
             "tex",
             "longhorns"
@@ -20,7 +20,7 @@
     {
         "name": "Georgia",
         "mascot": "Bulldogs",
-        "alternameNames": [
+        "alternateNames": [
             "uga",
             "dawgs",
             "bulldogs"
@@ -38,7 +38,7 @@
     {
         "name": "Tennessee",
         "mascot": "Volunteers",
-        "alternameNames": [
+        "alternateNames": [
             "tenn",
             "vols",
             "volunteers"
@@ -56,7 +56,7 @@
     {
         "name": "Alabama",
         "mascot": "Crimson Tide",
-        "alternameNames": [
+        "alternateNames": [
             "bama",
             "tide",
             "crimson tide"
@@ -74,7 +74,7 @@
     {
         "name": "LSU",
         "mascot": "Tigers",
-        "alternameNames": [
+        "alternateNames": [
             "louisiana state",
             "tigers"
         ],
@@ -91,7 +91,7 @@
     {
         "name": "South Carolina",
         "mascot": "Gamecocks",
-        "alternameNames": [
+        "alternateNames": [
             "usc",
             "sc",
             "gamecocks"
@@ -109,7 +109,7 @@
     {
         "name": "Texas A&M",
         "mascot": "Aggies",
-        "alternameNames": [
+        "alternateNames": [
             "aggies",
             "tamu",
             "a&m",
@@ -128,7 +128,7 @@
     {
         "name": "Ole Miss",
         "mascot": "Rebels",
-        "alternameNames": [
+        "alternateNames": [
             "rebels",
             "mississippi",
             "miss"
@@ -146,7 +146,7 @@
     {
         "name": "Missouri",
         "mascot": "Tigers",
-        "alternameNames": [
+        "alternateNames": [
             "mizzou",
             "tigers",
             "miz"
@@ -162,9 +162,9 @@
         "stadium": "Memorial Stadium"
     },
     {
-        "name": "Flordia",
+        "name": "Florida",
         "mascot": "Gators",
-        "alternameNames": [
+        "alternateNames": [
             "gators",
             "uf",
             "fla"
@@ -182,7 +182,7 @@
     {
         "name": "Arkansas",
         "mascot": "Razorbacks",
-        "alternameNames": [
+        "alternateNames": [
             "razorbacks",
             "uark",
             "ark"
@@ -200,7 +200,7 @@
     {
         "name": "Vanderbilt",
         "mascot": "Commodores",
-        "alternameNames": [
+        "alternateNames": [
             "vandy",
             "commodores",
             "van"
@@ -218,7 +218,7 @@
     {
         "name": "Oklahoma",
         "mascot": "Sooners",
-        "alternameNames": [
+        "alternateNames": [
             "sooners",
             "okla",
             "ou"
@@ -236,7 +236,7 @@
     {
         "name": "Auburn",
         "mascot": "Tigers",
-        "alternameNames": [
+        "alternateNames": [
             "aub",
             "tigers"
         ],
@@ -253,7 +253,7 @@
     {
         "name": "Kentucky",
         "mascot": "Wildcats",
-        "alternameNames": [
+        "alternateNames": [
             "uk",
             "wildcats"
         ],
@@ -270,7 +270,7 @@
     {
         "name": "Mississippi State",
         "mascot": "Bulldogs",
-        "alternameNames": [
+        "alternateNames": [
             "msst",
             "bulldogs",
             "miss state",
