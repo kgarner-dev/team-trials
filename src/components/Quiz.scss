@@ -3,11 +3,12 @@
 $primary: #000435;
 $secondary: #02ccfe;
 
-body {
-    position: relative;
+.quiz-wrapper {
+    padding: 20px;
 }
 
 .quiz-window {
+    background: #FFF;
     padding: 25px;
     max-width: 800px;
     margin: 0 auto;
