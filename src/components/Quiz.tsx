@@ -1,10 +1,19 @@
 import React, { useState, useEffect } from "react";
 import "./Quiz.scss";
-import collegeTeams from '../assets/content/colleges.json';
 import Card from "./Card";
 
+/* Import Team JSON */
+import collegeTeams from '../assets/content/college.json';
+import nbaTeams from '../assets/content/nba.json';
+
 function Quiz(props: any) {
-    const [collegeList, setCollegeList] = useState<any[]>([]);
+
+    const quizTypeMap: Record<string, any> = {
+        "fbs": collegeTeams,
+        "nba": nbaTeams
+    };
+
+    const [teamList, setTeamList] = useState<any[]>([]);
     const [questionIndex, setQuestionIndex] = useState(0);
     const [userAnswer, setUserAnswer] = useState("");
     const [attemptCount, setAttemptCount] = useState(0);
@@ -46,8 +55,9 @@ function Quiz(props: any) {
     };
 
     useEffect(() => {
-        const filteredColleges = collegeTeams.filter(team => team.conference === props.conference);
-        setCollegeList(shuffleArray(filteredColleges));
+        const teamsType = quizTypeMap[props.classification.toLowerCase()];
+        const filteredTeams = teamsType.filter(team => team.conference.toLowerCase() === props.conference);
+        setTeamList(shuffleArray(filteredTeams));
     }, [props.conference]);
 
     useEffect(() => {
@@ -73,22 +83,22 @@ function Quiz(props: any) {
     }, [attemptCount]);
 
     useEffect(() => {
-        if (questionIndex === collegeList.length && collegeList.length > 0) {
+        if (questionIndex === teamList.length && teamList.length > 0) {
             setQuizVisible(false);
             setResultVisible(true);
         }
-    }, [questionIndex, collegeList.length, totalPoints]);
+    }, [questionIndex, teamList.length, totalPoints]);
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
 
-        const currentCollege = collegeList[questionIndex];
-        if (!currentCollege) return;
+        const currentTeam = teamList[questionIndex];
+        if (!currentTeam) return;
 
         const formattedAnswer = userAnswer.trim().toLowerCase();
-        const isCorrectAnswer = currentCollege.alternateNames.some(
+        const isCorrectAnswer = currentTeam.alternateNames.some(
             (name: string) => name.toLowerCase() === formattedAnswer
-        ) || currentCollege.school.toLowerCase() === formattedAnswer;
+        ) || currentTeam.name.toLowerCase() === formattedAnswer;
 
         if (isCorrectAnswer) {
             setAnswerVisible(true)
@@ -101,7 +111,7 @@ function Quiz(props: any) {
                 setPoints(100);
                 resetVisuals();
 
-                if (questionIndex < collegeList.length - 1) {
+                if (questionIndex < teamList.length - 1) {
                     setQuestionIndex(prevIndex => prevIndex + 1);
                 } else {
                     setQuizVisible(false);
@@ -122,7 +132,7 @@ function Quiz(props: any) {
                     setPoints(100)
                     resetVisuals(); 
     
-                    if (questionIndex < collegeList.length - 1) {
+                    if (questionIndex < teamList.length - 1) {
                         setQuestionIndex(prevIndex => prevIndex + 1);
                     } else {
                         setQuizVisible(false);
@@ -141,25 +151,39 @@ function Quiz(props: any) {
         {quizVisible && (
             <>
             <div className="quiz-question">
-                <div className="quiz-color quiz-color--primary" style={{ backgroundColor: collegeList[questionIndex]?.color }}>
+                <div className="quiz-color quiz-color--primary" style={{ backgroundColor: teamList[questionIndex]?.color }}>
                     <h2>Primary Color</h2>
                 </div>
             </div>
 
             <div className="quiz-question">
-                <div className="quiz-color quiz-color--secondary" id="q1" style={{ backgroundColor: collegeList[questionIndex]?.alternateColor }}>
+                <div className="quiz-color quiz-color--secondary" id="q1" style={{ backgroundColor: teamList[questionIndex]?.alternateColor }}>
                     <h2>Secondary Color</h2>
                 </div>
             </div>
 
             <div className="quiz-question--2" id="q2">
-                <p><span>Stadium</span> { collegeList[questionIndex]?.location.name }</p>
-                <p><span>Conference</span> { collegeList[questionIndex]?.conference }</p>
-                <p><span>Location</span> { collegeList[questionIndex]?.location.city }, { collegeList[questionIndex]?.location.state }</p>
+                <p><span>Stadium</span> { teamList[questionIndex]?.stadium }</p>
+
+                {!teamList[questionIndex]?.division && (
+                    <>
+                    <p><span>Conference</span> { teamList[questionIndex]?.conference }</p>
+
+                    <p><span>Location</span> { teamList[questionIndex]?.city }, { teamList[questionIndex]?.state }</p>
+                    </>
+                )}
+
+                {teamList[questionIndex]?.division && (
+                    <>
+                    <p><span>Conference</span> { teamList[questionIndex]?.conference }</p>
+
+                    <p><span>Division</span> { teamList[questionIndex]?.division }</p>
+                    </>
+                )}
             </div>
 
             <div className="quiz-question--logo" id="q3">
-                <div className="quiz-logo" style={{ backgroundImage: `url(${ collegeList[questionIndex]?.logos[0] })` }}>
+                <div className="quiz-logo" style={{ backgroundImage: `url(${ teamList[questionIndex]?.logo })` }}>
                 </div>
             </div>
 
@@ -172,7 +196,7 @@ function Quiz(props: any) {
                     <p id="s5">X</p>
                 </div>
                 <div className="question-number">
-                    <p>{ questionIndex + 1 } / { collegeList.length }</p>
+                    <p>{ questionIndex + 1 } / { teamList.length }</p>
                 </div>
             </div>  
             </>
@@ -184,21 +208,22 @@ function Quiz(props: any) {
                 <div className="results">
                     <p>Total Points: { totalPoints }</p>
                 </div>
-                {collegeList.map((college, index) => {
+                {teamList.map((team, index) => {
                     const missedQuestions = quizResultsArray[index] || 0;
 
                     return (
                         <Card 
                             key={index} 
-                            school={college.school} 
-                            mascot={college.mascot} 
-                            city={college.location.city} 
-                            state={college.location.state} 
-                            stadium={college.location.name} 
-                            conference={college.conference} 
-                            classification={college.classification} 
-                            logo={college.logos[1]} 
-                            color={college.color} 
+                            name={team.name} 
+                            mascot={team.mascot} 
+                            city={team.city} 
+                            state={team.state} 
+                            stadium={team.name} 
+                            conference={team.conference} 
+                            classification={team.classification} 
+                            division={team.division}
+                            logo={team.logo} 
+                            color={team.color} 
                             attempts={missedQuestions}
                         />
                     );
@@ -227,16 +252,16 @@ function Quiz(props: any) {
             <div className="quiz-answer">
                 <p>+ { points }</p>
                 <Card
-                    key={collegeList[questionIndex]} 
-                    school={ collegeList[questionIndex]?.school } 
-                    mascot={ collegeList[questionIndex]?.mascot } 
-                    city={collegeList[questionIndex]?.location.city} 
-                    state={collegeList[questionIndex]?.location.state} 
-                    stadium={collegeList[questionIndex]?.location.name} 
-                    conference={collegeList[questionIndex]?.conference} 
-                    classification={collegeList[questionIndex]?.classification} 
-                    logo={collegeList[questionIndex]?.logos[1]} 
-                    color={collegeList[questionIndex]?.color}
+                    name={ teamList[questionIndex]?.name } 
+                    mascot={ teamList[questionIndex]?.mascot } 
+                    city={teamList[questionIndex]?.city} 
+                    state={teamList[questionIndex]?.state} 
+                    stadium={teamList[questionIndex]?.name} 
+                    conference={teamList[questionIndex]?.conference} 
+                    division={teamList[questionIndex]?.divison}
+                    classification={teamList[questionIndex]?.classification} 
+                    logo={teamList[questionIndex]?.logo} 
+                    color={teamList[questionIndex]?.color}
                     attempts={attemptCount}
                 />
             </div>

@@ -1,0 +1,289 @@
+[
+    {
+        "name": "Texas",
+        "mascot": "Longhorns",
+        "alternateNames": [
+            "ut",
+            "tex",
+            "longhorns"
+        ],
+        "conference": "SEC",
+        "division": null,
+        "classification": "FBS",
+        "color": "#bf5700",
+        "alternateColor": "#333f48",
+        "logo": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/251.png",
+        "city": "Austin",
+        "state": "TX",
+        "stadium": "DKR-Texas Memorial Stadium"
+    },
+    {
+        "name": "Georgia",
+        "mascot": "Bulldogs",
+        "alternateNames": [
+            "uga",
+            "dawgs",
+            "bulldogs"
+        ],
+        "conference": "SEC",
+        "division": null,
+        "classification": "FBS",
+        "color": "#BA0C2F",
+        "alternateColor": "#000000",
+        "logo": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/61.png",
+        "city": "Athens",
+        "state": "GA",
+        "stadium": "Sanford Stadium"
+    },
+    {
+        "name": "Tennessee",
+        "mascot": "Volunteers",
+        "alternateNames": [
+            "tenn",
+            "vols",
+            "volunteers"
+        ],
+        "conference": "SEC",
+        "division": null,
+        "classification": "FBS",
+        "color": "#FF8200",
+        "alternateColor": "#58595b",
+        "logo": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/2633.png",
+        "city": "Knoxville",
+        "state": "TN",
+        "stadium": "Neyland Stadium"
+    },
+    {
+        "name": "Alabama",
+        "mascot": "Crimson Tide",
+        "alternateNames": [
+            "bama",
+            "tide",
+            "crimson tide"
+        ],
+        "conference": "SEC",
+        "division": null,
+        "classification": "FBS",
+        "color": "#9e1b32",
+        "alternateColor": "#828a8f",
+        "logo": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/2633.png",
+        "city": "Tuscaloosa",
+        "state": "AL",
+        "stadium": "Bryant-Denny Stadium"
+    },
+    {
+        "name": "LSU",
+        "mascot": "Tigers",
+        "alternateNames": [
+            "louisiana state",
+            "tigers"
+        ],
+        "conference": "SEC",
+        "division": null,
+        "classification": "FBS",
+        "color": "#461D7C",
+        "alternateColor": "#FDD023",
+        "logo": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/99.png",
+        "city": "Baton Rouge",
+        "state": "LA",
+        "stadium": "Tiger Stadium"
+    },
+    {
+        "name": "South Carolina",
+        "mascot": "Gamecocks",
+        "alternateNames": [
+            "usc",
+            "sc",
+            "gamecocks"
+        ],
+        "conference": "SEC",
+        "division": null,
+        "classification": "FBS",
+        "color": "#73000A",
+        "alternateColor": "#000000",
+        "logo": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/2579.png",
+        "city": "Columbia",
+        "state": "SC",
+        "stadium": "Williams-Brice Stadium"
+    },
+    {
+        "name": "Texas A&M",
+        "mascot": "Aggies",
+        "alternateNames": [
+            "aggies",
+            "tamu",
+            "a&m",
+            "ta&m"
+        ],
+        "conference": "SEC",
+        "division": null,
+        "classification": "FBS",
+        "color": "#500000",
+        "alternateColor": "#FFFFFF",
+        "logo": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/245.png",
+        "city": "College Station",
+        "state": "TX",
+        "stadium": "Kyle Field"
+    },
+    {
+        "name": "Ole Miss",
+        "mascot": "Rebels",
+        "alternateNames": [
+            "rebels",
+            "mississippi",
+            "miss"
+        ],
+        "conference": "SEC",
+        "division": null,
+        "classification": "FBS",
+        "color": "#CE1126",
+        "alternateColor": "#14213D",
+        "logo": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/145.png",
+        "city": "Oxford",
+        "state": "MS",
+        "stadium": "Vaught-Hemingway Stadium"
+    },
+    {
+        "name": "Missouri",
+        "mascot": "Tigers",
+        "alternateNames": [
+            "mizzou",
+            "tigers",
+            "miz"
+        ],
+        "conference": "SEC",
+        "division": null,
+        "classification": "FBS",
+        "color": "#F1B82D",
+        "alternateColor": "#000000",
+        "logo": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/142.png",
+        "city": "Columbia",
+        "state": "MO",
+        "stadium": "Memorial Stadium"
+    },
+    {
+        "name": "Florida",
+        "mascot": "Gators",
+        "alternateNames": [
+            "gators",
+            "uf",
+            "fla"
+        ],
+        "conference": "SEC",
+        "division": null,
+        "classification": "FBS",
+        "color": "#0021A5",
+        "alternateColor": "#FA4616",
+        "logo": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/57.png",
+        "city": "Gainesville",
+        "state": "FL",
+        "stadium": "Ben Hill Griffin Stadium"
+    },
+    {
+        "name": "Arkansas",
+        "mascot": "Razorbacks",
+        "alternateNames": [
+            "razorbacks",
+            "uark",
+            "ark"
+        ],
+        "conference": "SEC",
+        "division": null,
+        "classification": "FBS",
+        "color": "#9D2235",
+        "alternateColor": "#FFFFFF",
+        "logo": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/8.png",
+        "city": "Fayetteville",
+        "state": "AR",
+        "stadium": "Donald W. Reynolds Razorback Stadium"
+    },
+    {
+        "name": "Vanderbilt",
+        "mascot": "Commodores",
+        "alternateNames": [
+            "vandy",
+            "commodores",
+            "van"
+        ],
+        "conference": "SEC",
+        "division": null,
+        "classification": "FBS",
+        "color": "#866d4b",
+        "alternateColor": "#000000",
+        "logo": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/238.png",
+        "city": "Nashville",
+        "state": "TN",
+        "stadium": "FirstBank Stadium"
+    },
+    {
+        "name": "Oklahoma",
+        "mascot": "Sooners",
+        "alternateNames": [
+            "sooners",
+            "okla",
+            "ou"
+        ],
+        "conference": "SEC",
+        "division": null,
+        "classification": "FBS",
+        "color": "#841617",
+        "alternateColor": "#FDF9D8",
+        "logo": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/201.png",
+        "city": "Norman",
+        "state": "OK",
+        "stadium": "Gaylord Family - Oklahoma Memorial Stadium"
+    },
+    {
+        "name": "Auburn",
+        "mascot": "Tigers",
+        "alternateNames": [
+            "aub",
+            "tigers"
+        ],
+        "conference": "SEC",
+        "division": null,
+        "classification": "FBS",
+        "color": "#0C2340",
+        "alternateColor": "#E87722",
+        "logo": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/2.png",
+        "city": "Auburn",
+        "state": "AL",
+        "stadium": "Jordan-Hare Stadium"
+    },
+    {
+        "name": "Kentucky",
+        "mascot": "Wildcats",
+        "alternateNames": [
+            "uk",
+            "wildcats"
+        ],
+        "conference": "SEC",
+        "division": null,
+        "classification": "FBS",
+        "color": "#0033a0",
+        "alternateColor": "#FFFFFF",
+        "logo": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/96.png",
+        "city": "Lexington",
+        "state": "KY",
+        "stadium": "Kroger Field"
+    },
+    {
+        "name": "Mississippi State",
+        "mascot": "Bulldogs",
+        "alternateNames": [
+            "msst",
+            "bulldogs",
+            "miss state",
+            "ms state"
+        ],
+        "conference": "SEC",
+        "division": null,
+        "classification": "FBS",
+        "color": "#660000",
+        "alternateColor": "#FFFFFF",
+        "logo": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/344.png",
+        "city": "Starkville",
+        "state": "MS",
+        "stadium": "Davis Wade Stadium"
+    }
+]

@@ -2,7 +2,7 @@ import React from "react";
 import "./Card.scss";
 
 interface CardProps {
-    school: string;
+    name: string;
     mascot: string;
     city: string;
     state: string;
@@ -11,11 +11,12 @@ interface CardProps {
     classification: string;
     logo: string;
     color: string;
+    division: string;
     attempts: number;
 }
 
 const Card: React.FC<CardProps> = ({ 
-    school, 
+    name, 
     mascot, 
     city, 
     state, 
@@ -24,6 +25,7 @@ const Card: React.FC<CardProps> = ({
     classification, 
     logo, 
     color,
+    division,
     attempts
 }) => {
     return (
@@ -35,12 +37,12 @@ const Card: React.FC<CardProps> = ({
             </div>
 
             <div className="college-logo">
-                <img src={logo} alt={`${school} Logo`} />
+                <img src={logo} alt={`${name} Logo`} />
             </div>
 
             <div className="college-content">
                 <div className="college-headline">
-                    <h2>{school}</h2>
+                    <h2>{name}</h2>
                     <p>{mascot}</p>
                 </div>
                 <div className="college-info">
@@ -56,10 +58,19 @@ const Card: React.FC<CardProps> = ({
                         <p>{stadium}</p>
                     </div>
 
-                    <div className="college-info--group">
-                        <h2>Conference</h2>
-                        <p>{conference}</p>
-                    </div>
+                    {!division && (
+                        <div className="college-info--group">
+                            <h2>Conference</h2>
+                            <p>{conference}</p>
+                        </div>
+                    )}
+
+                    {division && (
+                         <div className="college-info--group">
+                            <h2>Division</h2>
+                            <p>{division}</p>
+                        </div>
+                    )}
 
                     <div className="college-info--group">
                         <h2>Classification</h2>
