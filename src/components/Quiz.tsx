@@ -253,7 +253,7 @@ function Quiz({ conference, classification }: QuizProps) {
                     mascot={ teamList[questionIndex]?.mascot } 
                     city={teamList[questionIndex]?.city} 
                     state={teamList[questionIndex]?.state} 
-                    stadium={teamList[questionIndex]?.name} 
+                    stadium={teamList[questionIndex]?.stadium} 
                     conference={teamList[questionIndex]?.conference}
                     division={teamList[questionIndex]?.division ?? null}
                     classification={teamList[questionIndex]?.classification} 
