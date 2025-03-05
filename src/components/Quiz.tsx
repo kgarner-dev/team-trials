@@ -58,7 +58,7 @@ function Quiz({ conference, classification }: QuizProps) {
     /* Filtering teams based on the map and setting them for the quiz */
     useEffect(() => {
         const teamsType = quizTypeMap[classification.toLowerCase()];
-        const filteredTeams = (teamsType.filter(team => team.conference.toLowerCase() === conference)) as Team[];
+        const filteredTeams = (teamsType.filter(team => team.conference.toLowerCase() === conference));
         setTeamList(shuffleArray(filteredTeams));
     }, [conference]);
 
@@ -119,7 +119,7 @@ function Quiz({ conference, classification }: QuizProps) {
         }
 
         /* Show results when quiz is over */
-        if (questionIndex === teamList.length - 1 && teamList.length > 0) {
+        if (questionIndex === teamList.length && teamList.length > 0) {
             setQuizVisible(false);
             setResultVisible(true);
         }

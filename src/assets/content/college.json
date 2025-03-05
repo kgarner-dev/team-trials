@@ -285,5 +285,39 @@
         "city": "Starkville",
         "state": "MS",
         "stadium": "Davis Wade Stadium"
+    },
+    {
+        "name": "Texas Tech",
+        "mascot": "Red Raiders",
+        "alternateNames": [
+            "ttu",
+            "red raiders"
+        ],
+        "conference": "Big12",
+        "division": null,
+        "classification": "FBS",
+        "color": "#CC0000",
+        "alternateColor": "#000000",
+        "logo": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/2641.png",
+        "city": "Lubbock",
+        "state": "TX",
+        "stadium": "Jones AT&T Stadium"
+    },
+    {
+        "name": "Arizona State",
+        "mascot": "Sun Devils",
+        "alternateNames": [
+            "asu",
+            "sun devils"
+        ],
+        "conference": "Big12",
+        "division": null,
+        "classification": "FBS",
+        "color": "#8C1D40",
+        "alternateColor": "#FFC627",
+        "logo": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/9.png",
+        "city": "Tempe",
+        "state": "AZ",
+        "stadium": "Mountain America Stadium"
     }
 ]
