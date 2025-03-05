@@ -6,14 +6,35 @@ import Card from "./Card";
 import collegeTeams from '../assets/content/college.json';
 import nbaTeams from '../assets/content/nba.json';
 
-function Quiz(props: any) {
+interface QuizProps {
+    conference: string;
+    classification: string;
+};
 
-    const quizTypeMap: Record<string, any> = {
+interface Team {
+    name: string;
+    mascot: string;
+    alternateNames: string[];
+    conference: string;
+    division?: string | null;
+    classification: string;
+    color: string;
+    alternateColor: string;
+    logo: string;
+    city: string;
+    state: string;
+    stadium: string;
+};
+
+function Quiz({ conference, classification }: QuizProps) {
+
+    /* Map the query paramater to the team JSON */
+    const quizTypeMap: Record<string, Team[]> = {
         "fbs": collegeTeams,
-        "nba": nbaTeams
+        "nba": nbaTeams,
     };
 
-    const [teamList, setTeamList] = useState<any[]>([]);
+    const [teamList, setTeamList] = useState<Team[]>([]);
     const [questionIndex, setQuestionIndex] = useState(0);
     const [userAnswer, setUserAnswer] = useState("");
     const [attemptCount, setAttemptCount] = useState(0);
@@ -24,8 +45,9 @@ function Quiz(props: any) {
     const [answerVisible, setAnswerVisible] = useState(false);
     const [quizResultsArray, setQuizResultsArray] = useState<number[]>([]);
 
-    const shuffleArray = (array: any[]) => {
-        let shuffled = [...array];
+    /* Shuffle list of teams for the quiz */
+    const shuffleArray = (array: Team[]) => {
+        const shuffled = [...array];
         for (let i = shuffled.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
@@ -33,83 +55,35 @@ function Quiz(props: any) {
         return shuffled;
     };
 
-    function resetVisuals() {
-        for (let i = 1; i <= 5; i++) {
-            const strike = document.getElementById(`s${i}`);
-            if (strike) {
-                strike.style.opacity = "0.25";
-                strike.style.color = "black";
-            }
-        }
-
-        for (let i = 1; i <= 3; i++) {
-            const question = document.getElementById(`q${i}`);
-            if (question) {
-                question.style.display = "none";
-                question.style.opacity = "0";
-            }
-        }
-
-        const logo = document.getElementById(`q3`);
-        logo!.style.filter = "brightness(0)";     
-    };
-
+    /* Filtering teams based on the map and setting them for the quiz */
     useEffect(() => {
-        const teamsType = quizTypeMap[props.classification.toLowerCase()];
-        const filteredTeams = teamsType.filter(team => team.conference.toLowerCase() === props.conference);
+        const teamsType = quizTypeMap[classification.toLowerCase()];
+        const filteredTeams = (teamsType.filter(team => team.conference.toLowerCase() === conference)) as Team[];
         setTeamList(shuffleArray(filteredTeams));
-    }, [props.conference]);
-
-    useEffect(() => {
-        if (attemptCount > 0 && attemptCount <= 3) {
-            document.getElementById(`q${attemptCount}`)!.style.display = "inline-grid";
-            document.getElementById(`q${attemptCount}`)!.style.opacity = "1";
-            document.getElementById(`s${attemptCount}`)!.style.opacity = "1";
-            document.getElementById(`s${attemptCount}`)!.style.color = "red";
-            
-            setPoints(prevPoints => prevPoints - 20);
-        } else if (attemptCount == 4) {
-            document.getElementById('q3')!.style.filter = "unset";
-            document.getElementById(`s4`)!.style.opacity = "1";
-            document.getElementById(`s4`)!.style.color = "red";
-
-            setPoints(prevPoints => prevPoints - 20);
-        } else if (attemptCount == 5) {
-            document.getElementById(`s5`)!.style.opacity = "1";
-            document.getElementById(`s5`)!.style.color = "red";
-
-            setPoints(prevPoints => prevPoints - 20);
-        }
-    }, [attemptCount]);
-
-    useEffect(() => {
-        if (questionIndex === teamList.length && teamList.length > 0) {
-            setQuizVisible(false);
-            setResultVisible(true);
-        }
-    }, [questionIndex, teamList.length, totalPoints]);
+    }, [conference]);
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
 
         const currentTeam = teamList[questionIndex];
-        if (!currentTeam) return;
 
+        /* Check if the answer matches the name or alternate names */
         const formattedAnswer = userAnswer.trim().toLowerCase();
         const isCorrectAnswer = currentTeam.alternateNames.some(
             (name: string) => name.toLowerCase() === formattedAnswer
         ) || currentTeam.name.toLowerCase() === formattedAnswer;
 
         if (isCorrectAnswer) {
+            /* Display result card */
             setAnswerVisible(true)
 
+            /* Make sure card is visible for 3 seconds before storing results and resetting for the next question */
             setTimeout(() => {
                 setAnswerVisible(false)
                 setQuizResultsArray(prevResults => [...prevResults, attemptCount]);
                 setAttemptCount(0);
                 setTotalPoints(totalPoints => totalPoints + points);
                 setPoints(100);
-                resetVisuals();
 
                 if (questionIndex < teamList.length - 1) {
                     setQuestionIndex(prevIndex => prevIndex + 1);
@@ -119,35 +93,45 @@ function Quiz(props: any) {
                 }
             }, 3000);        
         } else {
-            setAttemptCount(prevCount => prevCount + 1);
-            
-            if (attemptCount == 4) {
-                setAnswerVisible(true);
+            /*  Reduce points for the round */
+            setPoints(prevPoints => prevPoints - 20);
 
-                setTimeout(() => {
-                    setAnswerVisible(false)
-                    setQuizResultsArray(prevResults => [...prevResults, attemptCount]);
-                    setAttemptCount(0);  
-                    setTotalPoints(totalPoints => totalPoints + 0)
-                    setPoints(100)
-                    resetVisuals(); 
-    
-                    if (questionIndex < teamList.length - 1) {
-                        setQuestionIndex(prevIndex => prevIndex + 1);
-                    } else {
-                        setQuizVisible(false);
-                        setResultVisible(true);
-                    }
-                }, 3000);   
-            }
+            setAttemptCount(prevAttempt => {
+                if (prevAttempt === 4) {
+                    setAnswerVisible(true);
+                    setTimeout(() => {
+                        setAnswerVisible(false);
+                        setQuizResultsArray(prevResults => [...prevResults, attemptCount]);
+                        setAttemptCount(0);
+                        setTotalPoints(totalPoints => totalPoints + 0);
+                        setPoints(100);
+            
+                        if (questionIndex < teamList.length - 1) {
+                            setQuestionIndex(prevIndex => prevIndex + 1);
+                        } else {
+                            setQuizVisible(false);
+                            setResultVisible(true);
+                        }
+                    }, 3000);
+                }
+                return prevAttempt + 1;
+            });
         }
 
+        /* Show results when quiz is over */
+        if (questionIndex === teamList.length - 1 && teamList.length > 0) {
+            setQuizVisible(false);
+            setResultVisible(true);
+        }
+
+        /* Clear the text in the answer field */
         setUserAnswer("");
     };
 
     return (
         <div className="quiz-wrapper">
         <div className="quiz-window" id="quiz-window">
+
         {quizVisible && (
             <>
             <div className="quiz-question">
@@ -156,44 +140,57 @@ function Quiz(props: any) {
                 </div>
             </div>
 
-            <div className="quiz-question">
-                <div className="quiz-color quiz-color--secondary" id="q1" style={{ backgroundColor: teamList[questionIndex]?.alternateColor }}>
-                    <h2>Secondary Color</h2>
+            {attemptCount >= 1 && (
+                <div className="quiz-question">
+                    <div className="quiz-color quiz-color--secondary" id="q1" style={{ backgroundColor: teamList[questionIndex]?.alternateColor }}>
+                        <h2>Secondary Color</h2>
+                    </div>
                 </div>
-            </div>
+            )}
 
-            <div className="quiz-question--2" id="q2">
-                <p><span>Stadium</span> { teamList[questionIndex]?.stadium }</p>
+            {attemptCount >= 2 && (
+                <div className="quiz-question--2" id="q2">
+                    <p><span>Stadium</span> { teamList[questionIndex]?.stadium }</p>
 
-                {!teamList[questionIndex]?.division && (
-                    <>
-                    <p><span>Conference</span> { teamList[questionIndex]?.conference }</p>
+                    {!teamList[questionIndex]?.division && (
+                        <>
+                        <p><span>Conference</span> { teamList[questionIndex]?.conference }</p>
 
-                    <p><span>Location</span> { teamList[questionIndex]?.city }, { teamList[questionIndex]?.state }</p>
-                    </>
-                )}
+                        <p><span>Location</span> { teamList[questionIndex]?.city }, { teamList[questionIndex]?.state }</p>
+                        </>
+                    )}
 
-                {teamList[questionIndex]?.division && (
-                    <>
-                    <p><span>Conference</span> { teamList[questionIndex]?.conference }</p>
+                    {teamList[questionIndex]?.division && (
+                        <>
+                        <p><span>Conference</span> { teamList[questionIndex]?.conference }</p>
 
-                    <p><span>Division</span> { teamList[questionIndex]?.division }</p>
-                    </>
-                )}
-            </div>
-
-            <div className="quiz-question--logo" id="q3">
-                <div className="quiz-logo" style={{ backgroundImage: `url(${ teamList[questionIndex]?.logo })` }}>
+                        <p><span>Division</span> { teamList[questionIndex]?.division }</p>
+                        </>
+                    )}
                 </div>
-            </div>
+            )}
+
+            {attemptCount === 3 && (
+                <div className="quiz-question--logo" id="q3">
+                    <div className="quiz-logo quiz-logo--blackout" style={{ backgroundImage: `url(${ teamList[questionIndex]?.logo })` }}>
+                    </div>
+                </div>
+            )}
+
+            {attemptCount === 4 && (
+                <div className="quiz-question--logo" id="q3">
+                    <div className="quiz-logo" style={{ backgroundImage: `url(${ teamList[questionIndex]?.logo })` }}>
+                    </div>
+                </div>
+            )}
 
             <div className="quiz-details">
                 <div className="guesses">
-                    <p id="s1">X</p>
-                    <p id="s2">X</p>
-                    <p id="s3">X</p>
-                    <p id="s4">X</p>
-                    <p id="s5">X</p>
+                    {attemptCount >= 1 ? <p className="wrong">X</p> : <p>X</p>}
+                    {attemptCount >= 2 ? <p className="wrong">X</p> : <p>X</p>}
+                    {attemptCount >= 3 ? <p className="wrong">X</p> : <p>X</p>}
+                    {attemptCount >= 4 ? <p className="wrong">X</p> : <p>X</p>}
+                    {attemptCount >= 5 ? <p className="wrong">X</p> : <p>X</p>}
                 </div>
                 <div className="question-number">
                     <p>{ questionIndex + 1 } / { teamList.length }</p>
@@ -218,10 +215,10 @@ function Quiz(props: any) {
                             mascot={team.mascot} 
                             city={team.city} 
                             state={team.state} 
-                            stadium={team.name} 
+                            stadium={team.stadium} 
                             conference={team.conference} 
                             classification={team.classification} 
-                            division={team.division}
+                            division={team.division ?? null}
                             logo={team.logo} 
                             color={team.color} 
                             attempts={missedQuestions}
@@ -257,8 +254,8 @@ function Quiz(props: any) {
                     city={teamList[questionIndex]?.city} 
                     state={teamList[questionIndex]?.state} 
                     stadium={teamList[questionIndex]?.name} 
-                    conference={teamList[questionIndex]?.conference} 
-                    division={teamList[questionIndex]?.divison}
+                    conference={teamList[questionIndex]?.conference}
+                    division={teamList[questionIndex]?.division ?? null}
                     classification={teamList[questionIndex]?.classification} 
                     logo={teamList[questionIndex]?.logo} 
                     color={teamList[questionIndex]?.color}

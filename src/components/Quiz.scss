@@ -22,12 +22,6 @@ $secondary: #02ccfe;
         gap: 1rem;
     }
 
-    #q1, #q2, #q3 {
-        display: none;
-        opacity: 0;
-        transition: opacity 0.35s ease;
-    }
-
     .quiz-question {
         grid-column: auto / span 2;
         padding: 15px 0;
@@ -91,7 +85,6 @@ $secondary: #02ccfe;
 
     .quiz-question--logo {
         grid-column: auto / span 2;
-        filter: brightness(0);
 
         .quiz-logo {
             width: 100%;
@@ -99,6 +92,10 @@ $secondary: #02ccfe;
             background-size: contain;
             background-position: center center;
             background-repeat: no-repeat;
+
+            &--blackout {
+                filter: brightness(0);
+            }
         }
     }
 

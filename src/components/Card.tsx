@@ -11,7 +11,7 @@ interface CardProps {
     classification: string;
     logo: string;
     color: string;
-    division: string;
+    division: string | null;
     attempts: number;
 }
 
