@@ -23,12 +23,8 @@ $secondary: #02ccfe;
     }
 
     .quiz-question {
-        grid-column: auto / span 2;
+        grid-column: auto / span 1;
         padding: 15px 0;
-
-        @media (min-width: 600px) {
-            grid-column: auto / span 1;
-        }
 
         .quiz-color {
             height: 100%;
@@ -44,7 +40,6 @@ $secondary: #02ccfe;
             h2 {
                 position: absolute;
                 inset: 0;
-                display: flex;
                 align-items: center;
                 justify-content: center;
                 color: #FFF;
@@ -53,6 +48,11 @@ $secondary: #02ccfe;
                 text-transform: uppercase;
                 letter-spacing: 0.15rem;
                 font-size: clamp(1rem, 1.35vw, 1.5rem);
+                display: none;
+
+                @media (min-width: 600px) {
+                    display: flex;
+                }
             }
         }
     }
