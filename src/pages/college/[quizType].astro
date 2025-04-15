@@ -10,7 +10,7 @@ export async function getStaticPaths() {
         { params: { quizType: "big10" } },
         { params: { quizType: "big12" } },
         { params: { quizType: "cusa" } },
-        { params: { quizType: "mw" } },
+        { params: { quizType: "mwc" } },
         { params: { quizType: "pac12" } },
         { params: { quizType: "sunbelt" } },
         { params: { quizType: "mac" } },
@@ -20,15 +20,15 @@ export async function getStaticPaths() {
 
 const quizMap: Record<string, string> = {
     "sec": "SEC",
-    "aac": "American Athletic",
+    "aac": "AAC",
     "acc": "ACC",
     "big10": "Big Ten",
     "big12": "Big 12",
     "cusa": "Conference USA",
-    "mw": "Mountain West",
+    "mwc": "Mountain West",
     "pac12": "Pac-12",
     "sunbelt": "Sun Belt",
-    "mac": "Mid-American",
+    "mac": "MAC",
     "independents": "FBS Independents"
 };
 
