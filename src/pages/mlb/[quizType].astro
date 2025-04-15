@@ -1,0 +1,25 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Quiz from '../../components/Quiz';
+
+export async function getStaticPaths() {
+    return [
+        { params: { quizType: "nl" } },
+        { params: { quizType: "al" } }
+    ];
+}
+
+const quizMap: Record<string, string> = {
+    "nl": "National",
+    "al": "American",
+};
+
+const { quizType } = Astro.params;
+---
+<Layout title={quizMap[quizType]}>
+    <Quiz 
+        conference={quizType} 
+        classification="mlb"
+        client:load 
+    />
+</Layout>

@@ -1,0 +1,80 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CategoryCard from '../../components/CategoryCard.astro';
+import Hero from '../../components/Hero.astro';
+
+// let arr = [];
+// const numbers = new Set();
+
+// while (numbers.size < 10) {
+// 	numbers.add(Math.floor(Math.random() * 133) + 1);
+// };
+
+// arr.push(...numbers);
+---
+
+<Layout title="NHL">
+	<div class="container">
+        <Hero 
+            headline="NHL"
+            body="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus euismod mi elit. In euismod dignissim justo, tincidunt elementum nisl laoreet eu. Nam porta tincidunt neque. Donec egestas justo a turpis rhoncus tincidunt. Ut sagittis eget lacus ut suscipit."
+            breadcrumb="← Back Home"
+            breadcrumb_link="/"
+        />
+		<div class="category">
+			<CategoryCard 
+				title="Eastern" 
+				url="/nhl/eastern"
+				logo="https://content.sportslogos.net/logos/1/984/full/3092.gif"
+				color="#7F2E6D"
+			/>
+
+			<CategoryCard 
+				title="Western" 
+				url="/nhl/western"
+				logo="https://content.sportslogos.net/logos/1/984/full/3090.gif"
+				color="#004686"
+			/>
+		</div>
+	</div>
+</Layout>
+
+<style lang="scss">
+	@use "../../components/global.scss";
+
+	.container {
+		max-width: 1400px;
+		margin: 0 auto;
+		min-height: 80vh;
+		padding: 20px;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	.category {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		grid-template-rows: auto;
+		gap: 10px;
+
+		h2 {
+			grid-column: auto / span 4;
+			font-size: clamp(1.25rem, 2.55vw, 2.55rem);
+			margin: 0;
+		}
+
+		p, .link {
+			grid-column: auto / span 4;
+		}
+
+		p {
+			margin: 5px 0;
+		}
+
+		.link {
+			margin: 0 0 20px;
+		}
+	}
+
+</style>

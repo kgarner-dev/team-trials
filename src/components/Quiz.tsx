@@ -5,6 +5,9 @@ import Card from "./Card";
 /* Import Team JSON */
 import collegeTeams from '../assets/content/college.json';
 import nbaTeams from '../assets/content/nba.json';
+import nflTeams from '../assets/content/nfl.json';
+import mlbTeams from '../assets/content/mlb.json';
+import nhlTeams from '../assets/content/nhl.json';
 
 interface QuizProps {
     conference: string;
@@ -32,6 +35,9 @@ function Quiz({ conference, classification }: QuizProps) {
     const quizTypeMap: Record<string, Team[]> = {
         "fbs": collegeTeams,
         "nba": nbaTeams,
+        "nfl": nflTeams,
+        "mlb": mlbTeams,
+        "nhl": nhlTeams
     };
 
     const [teamList, setTeamList] = useState<Team[]>([]);
